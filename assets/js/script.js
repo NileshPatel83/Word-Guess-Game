@@ -56,9 +56,26 @@ function getBlankSpacePositions(monthName){
     //If month is "January" (total 7 letters, so half is 3.5), returns 3.
     var totalBlankSpaces = Math.floor(monthName.length/2);
     
+    //For loop to get blank positions.
+    for(var i = 0; i < totalBlankSpaces; i++){
 
+        //Gets the blank position.
+        var position = Math.floor(Math.random() * monthName.length);
+
+        //Checks whether this position is already added to the array or not.
+        //If added already then repeats the step.
+        if(blankSpacePositions.includes(position)){
+            i--;
+        }
+
+        //Otherwise adds the position to an array.
+        else{
+            blankSpacePositions.push(position);
+        }
+    }
     
-    return blankSpacePositions;
+    //Returns the array that has its values sorted.
+    return blankSpacePositions.sort(function(a,b) {return a-b});
 }
 
 //Starts the timer function.
