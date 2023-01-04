@@ -9,8 +9,14 @@ const monthsNames = ["January", "February", "March", "April", "May", "June", "Ju
 
 //Keeps track of time remaning. This is to stop key press event after the remaining time is 0.
 var timeRemaining = -1;
+
+//Randomly generated month name. Used to compare with values entered by user.
 var monthName;
+
+//Month name with blank spaces. When user types correct letter, blank space is replaced by correct letter.
 var blankMonthName;
+
+//Timer. Stopped either when user fails to guess the month name or user is able to type the correct month name.
 var timeInterval;
 
 //Get elements from index file.
