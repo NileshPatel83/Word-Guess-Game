@@ -1,6 +1,8 @@
 //Constants
 const timeAllowed = 10;
 const blankSpace = "_";
+const lossesKey = "losses";
+const winsKey = "wins";
 const monthsNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
 //Global variables.
@@ -117,8 +119,26 @@ function startTimer(){
 
             //Displays specified message as month name.
             displayMessage("Game Over", monthNameText);
+
+            //Gets the current value of losses and increments by 1.
+            var totalLoss = parseInt(lossCount.textContent, 10) + 1;
+
+            //Updates the local storage with new value of losses.
+            updateLocalStorage(totalLoss, lossesKey);
+
+            //Displays total losses in browser.
+            displayMessage(totalLoss, lossCount);
         }
       }, 1000);    
+}
+
+//Updates the local storage with new value of losses or wins.
+function updateLocalStorage(value, key){
+    var storage = localStorage.getItem(key);
+
+    if(storage === null){
+        localStorage.setItem(key, value);
+    }
 }
 
 //Function to display specified message specified element.
@@ -150,8 +170,15 @@ document.addEventListener('keydown', function (event){
 
         //Stops the timer.
         clearInterval(timeInterval);
+        
+        //Gets the current value of wins and increments by 1.
+        var totalWins = parseInt(winCount.textContent, 10) + 1;
 
+         //Updates the local storage with new value of wins.
+        updateLocalStorage(totalWins, winsKey);
 
+        //Displays total wins in browser.
+        displayMessage(totalWins, winCount);      
     }
 });
 
