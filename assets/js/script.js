@@ -1,3 +1,7 @@
+//Global constants
+const timeAllowed = 10;
+const daysNames = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+
 var startButton = document.getElementById("#start-button");
 var resetButton = document.getElementById("#reset-button");
 var dayName = document.getElementById("#day-name");
