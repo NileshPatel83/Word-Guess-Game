@@ -45,6 +45,7 @@ main{
     columns: var(--header-background-color);
     border: black solid 0.2rem;
     border-radius: 0.5rem;
+    cursor: pointer;
 }
 
 .lhs-card, .rhs-card{
