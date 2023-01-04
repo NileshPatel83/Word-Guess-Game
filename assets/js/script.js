@@ -30,27 +30,45 @@ startButton.addEventListener("click", function(){
 
     //Gets array of blank space position from month name.
     //Letter in month name will be replaced by blank at these positions.
-    var blankSpacePosition = getBlankSpacePositions(monthName);
+    var blankSpacePositionArray = getBlankSpacePositionArray(monthName);
 
-    var blankMonthName = getBlankMonthName(monthName, blankSpacePosition);
-    // displayMessage(blankMonthName);
+    //Gets blank month name by replacing letters at blank space position array with underscore.
+    var blankMonthName = getBlankMonthName(monthName, blankSpacePositionArray);
+
+    //Displays the value of blank month name.
+    displayMessage(blankMonthName.join(""));
 });
 
-function getBlankMonthName(monthName, blankSpacePosition){
+//Gets blank month name by replacing letters at blank space position array with underscore.
+function getBlankMonthName(monthName, blankSpacePositionArray){
 
+    var blankMonthName = [];
+
+    //Converts the month name into an array of letters.
+    var monthNameLetters = monthName.split("");
+
+    //Loops through month name letters.
+    for(var i = 0; i < monthNameLetters.length; i++){
+
+        //If the blank space array includes the current position, replaces the letter with underscore.
+        if(blankSpacePositionArray.includes(i)){
+            blankMonthName.push(blankSpace)
+        }
+
+        //Otherwise gets the letter from month name for current position.
+        else{
+            blankMonthName.push(monthNameLetters[i])
+        }
+    }
     
-    
-
-
-
-    return monthName;
+    return blankMonthName;
 }
 
 //Gets array of blank space position from month name.
 //Gets half blank spaces from month name as whole number.
 //Letter in month name will be replaced by blank at these positions.
-function getBlankSpacePositions(monthName){
-    var blankSpacePositions = [];
+function getBlankSpacePositionArray(monthName){
+    var blankSpacePositionArray = [];
 
     //Gets round down half of month length as whole number.
     //If month is "January" (total 7 letters, so half is 3.5), returns 3.
@@ -64,18 +82,18 @@ function getBlankSpacePositions(monthName){
 
         //Checks whether this position is already added to the array or not.
         //If added already then repeats the step.
-        if(blankSpacePositions.includes(position)){
+        if(blankSpacePositionArray.includes(position)){
             i--;
         }
 
         //Otherwise adds the position to an array.
         else{
-            blankSpacePositions.push(position);
+            blankSpacePositionArray.push(position);
         }
     }
     
     //Returns the array that has its values sorted.
-    return blankSpacePositions.sort(function(a,b) {return a-b});
+    return blankSpacePositionArray.sort(function(a,b) {return a-b});
 }
 
 //Starts the timer function.
