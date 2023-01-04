@@ -21,6 +21,36 @@ var winCount = document.getElementById("wins");
 var lossCount = document.getElementById("losses");
 var timeLeft = document.getElementById("time-left");
 
+init();
+
+function init(){
+
+    //Gets the initial wins and displays in browser.
+    var initialWins = getInitialValue(winsKey);
+    displayMessage(initialWins, winCount);
+
+    //Gets the initial losses and displays in browser.
+    var initialLosses = getInitialValue(lossesKey);
+    displayMessage(initialLosses, lossCount);
+}
+
+//Gets the initial value of wins or losses.
+//If the storage is not set, sets the storage with value of 0.
+function getInitialValue(key){
+
+    var value = 0;
+    var initialValue = localStorage.getItem(key);
+    
+    if(initialValue === null){
+        localStorage.setItem(key, value);
+    }
+    else{
+        value = initialValue;
+    }
+
+    return value;
+}
+
 //Event listener for start button.
 startButton.addEventListener("click", function(event){
 
@@ -124,21 +154,12 @@ function startTimer(){
             var totalLoss = parseInt(lossCount.textContent, 10) + 1;
 
             //Updates the local storage with new value of losses.
-            updateLocalStorage(totalLoss, lossesKey);
+            localStorage.setItem(lossesKey, totalLoss);
 
             //Displays total losses in browser.
             displayMessage(totalLoss, lossCount);
         }
       }, 1000);    
-}
-
-//Updates the local storage with new value of losses or wins.
-function updateLocalStorage(value, key){
-    var storage = localStorage.getItem(key);
-
-    if(storage === null){
-        localStorage.setItem(key, value);
-    }
 }
 
 //Function to display specified message specified element.
@@ -175,7 +196,7 @@ document.addEventListener('keydown', function (event){
         var totalWins = parseInt(winCount.textContent, 10) + 1;
 
          //Updates the local storage with new value of wins.
-        updateLocalStorage(totalWins, winsKey);
+         localStorage.setItem(winsKey, totalWins);
 
         //Displays total wins in browser.
         displayMessage(totalWins, winCount);      
