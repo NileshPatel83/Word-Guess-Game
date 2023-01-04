@@ -1,39 +1,44 @@
 //Constants
-const timeAllowed = 20;
+const timeAllowed = 10;
 const blankSpace = "_";
 const monthsNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
 //Global variables.
 
 //Keeps track of time remaning. This is to stop key press event after the remaining time is 0.
-var timeRemaining = timeAllowed;
+var timeRemaining = -1;
+var monthName;
+var blankMonthName;
+var timeInterval;
 
 //Get elements from index file.
 var startButton = document.getElementById("start-button");
 var resetButton = document.getElementById("reset-button");
-var monthName = document.getElementById("month-name");
+var monthNameText = document.getElementById("month-name");
 var winCount = document.getElementById("wins");
 var lossCount = document.getElementById("losses");
 var timeLeft = document.getElementById("time-left");
 
 //Event listener for start button.
-startButton.addEventListener("click", function(){
+startButton.addEventListener("click", function(event){
+
+    if(event.target != startButton) return;
 
     //Sets the initial value of allowed time.
     timeLeft.textContent = timeAllowed;
 
     // Starts the timer.
-    // startTimer();
+    startTimer();
 
     //Gets the month name randomly.
-    var monthName = monthsNames[Math.floor(Math.random() * monthsNames.length)];
+    monthName = monthsNames[Math.floor(Math.random() * monthsNames.length)];
 
     //Gets array of blank space position from month name.
     //Letter in month name will be replaced by blank at these positions.
     var blankSpacePositionArray = getBlankSpacePositionArray(monthName);
 
     //Gets blank month name by replacing letters at blank space position array with underscore.
-    var blankMonthName = getBlankMonthName(monthName, blankSpacePositionArray);
+    blankMonthName = getBlankMonthName(monthName, blankSpacePositionArray);
 
     //Displays the value of blank month name.
     displayMessage(blankMonthName.join(""));
@@ -60,7 +65,7 @@ function getBlankMonthName(monthName, blankSpacePositionArray){
             blankMonthName.push(monthNameLetters[i])
         }
     }
-    
+
     return blankMonthName;
 }
 
@@ -100,7 +105,7 @@ function getBlankSpacePositionArray(monthName){
 function startTimer(){
     timeRemaining = timeAllowed;
     
-    var timeInterval = setInterval(function () {
+    timeInterval = setInterval(function () {
         timeRemaining--;
 
         //Sets the new time value.
@@ -118,5 +123,66 @@ function startTimer(){
 
 //Function to display specified message as month name.
 function displayMessage(message){
-    monthName.textContent = message;
+    monthNameText.textContent = message;
+}
+
+document.addEventListener('keydown', function (event){
+
+    event.preventDefault();
+    event.stopPropagation();
+    
+    //Doesn't do anything if timer is 0 or key is pressed before the game starts.
+    if(timeRemaining === 0 || timeRemaining === timeAllowed) return;
+
+    //Gets the key's lowercase value.
+    var key = event.key.toLowerCase();
+
+    //Gets the new name.
+    //If typed key matches the letters of month name, replaces underscores with letter.
+    //Replaces all underscores that matches.
+    var newMonthName = getNewMonthName(key);
+
+    //When new value matches the month name,
+    //1. Stops the timer.
+    //2. Displays results.
+    //3. Stores results to local storage.
+    if(newMonthName === monthName){
+
+        //Stops the timer.
+        clearInterval(timeInterval);
+
+        
+    }
+});
+
+//Gets the new name.
+//If typed key matches the letters of month name, replaces underscores with letter.
+//Replaces all underscores that matches.
+function getNewMonthName(key){
+    //Converts the month name into an array of letters.
+    var monthNameLetters = monthName.split("");
+
+    //Loops through month name letters.
+    for(var i = 0; i < monthNameLetters.length; i++){
+
+        //Checks whether the typed key matches one of the letter of month name.
+        if (monthNameLetters[i].toLowerCase() === key){
+
+            //if key matches and the letter is the first letter then makes the letter capital and replaces underscore with the letter.
+            if( i === 0)
+            {
+                blankMonthName[i] = key.toUpperCase();
+            }
+
+            //If key matches then replaces underscore with the letter.
+            else{
+                blankMonthName[i] = key;
+            }
+
+            //Displays the new value.
+            displayMessage(blankMonthName.join(""));
+        }
+    }
+
+    return blankMonthName.join("");
 }
