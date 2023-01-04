@@ -1,13 +1,14 @@
 var startButton = document.getElementById("#start-button");
 var resetButton = document.getElementById("#reset-button");
-var value = document.getElementById("#value");
-var wins = document.getElementById("#wins");
-var losses = document.getElementById("#losses");
+var dayName = document.getElementById("#day-name");
+var winCount = document.getElementById("#wins");
+var lossCount = document.getElementById("#losses");
+var timeLeft = document.getElementById("#time-left");
 
-startButton.addEventListener("click", function(){
-    // Start the timer.
+// startButton.addEventListener("click", function(){
+//     // Start the timer.
 
 
-    // Display random word.
-});
+//     // Display random word.
+// });
 

@@ -8,30 +8,30 @@
 </head>
 <body>
     <header>
-        <h1>Word Guess Game</h1>
+        <h1>Day Name Guess Game</h1>
         <button id="start-button">Start</button>
     </header>
     
     <main>
         <div class="lhs-card">
-            <h2 id = "Value">Test Value</h2>
+            <h2 id = "day-name">Day Name</h2>
         </div>
 
         <div class="rhs-card">
-            <div>
-                <h2 id="wins">Wins: 0</h2>
-                <h2 id="losses">Lossses: 0</h2>
+            <div class="result">
+                <div class="result-count">
+                    <h2>Wins: <span id="wins">0</span></h2>
+                    <h2>Lossses: <span id="losses">0</span></h2>
+                </div>
                 <button id="reset-button">Reset Scrore</button>
             </div>
-            <div>
-                <h2>Time Remaining</h2>
-                <h2>Time Remaining</h2>
+            <div class="time-remaining">
+                <h2 id="time-left">10</h2>
+                <h2 id="time-note">seconds remaining</h2>
             </div>
         </div>
     </main>
 
     <footer></footer>
-
-    <script src="./assets/js/script.js"></script>
 </body>
 </html>
