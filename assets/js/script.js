@@ -21,8 +21,10 @@ var winCount = document.getElementById("wins");
 var lossCount = document.getElementById("losses");
 var timeLeft = document.getElementById("time-left");
 
+
 init();
 
+// The init() function fires when the page is loaded.
 function init(){
 
     //Gets the initial wins and displays in browser.
@@ -50,6 +52,21 @@ function getInitialValue(key){
 
     return value;
 }
+
+//Event listener for reset button.
+resetButton.addEventListener("click", function(event){
+    
+    if(event.target != resetButton) return;
+
+    //Resets the wins in local storage to 0 and displays new value in browser.
+    localStorage.setItem(winsKey, 0);
+    displayMessage(0, winCount);
+
+    //Resets the losses in local storage to 0 and displays new value in browser.
+    localStorage.setItem(lossesKey, 0);
+    displayMessage(0, lossCount);
+
+});
 
 //Event listener for start button.
 startButton.addEventListener("click", function(event){
