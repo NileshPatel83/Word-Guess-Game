@@ -69,7 +69,7 @@ main{
     flex-wrap: wrap;
 }
 
-#day-name{
+#month-name{
     font-size: 5rem;
     line-height: var(--line-height);
 }
