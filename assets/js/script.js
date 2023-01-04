@@ -41,7 +41,7 @@ startButton.addEventListener("click", function(event){
     blankMonthName = getBlankMonthName(monthName, blankSpacePositionArray);
 
     //Displays the value of blank month name.
-    displayMessage(blankMonthName.join(""));
+    displayMonthName(blankMonthName.join(""));
 });
 
 //Gets blank month name by replacing letters at blank space position array with underscore.
@@ -116,13 +116,13 @@ function startTimer(){
             clearInterval(timeInterval);
 
             //Displays specified message as month name.
-            displayMessage("Game Over");
+            displayMonthName("Game Over");
         }
       }, 1000);    
 }
 
 //Function to display specified message as month name.
-function displayMessage(message){
+function displayMonthName(message){
     monthNameText.textContent = message;
 }
 
@@ -151,7 +151,7 @@ document.addEventListener('keydown', function (event){
         //Stops the timer.
         clearInterval(timeInterval);
 
-        
+
     }
 });
 
@@ -180,7 +180,7 @@ function getNewMonthName(key){
             }
 
             //Displays the new value.
-            displayMessage(blankMonthName.join(""));
+            displayMonthName(blankMonthName.join(""));
         }
     }
 
