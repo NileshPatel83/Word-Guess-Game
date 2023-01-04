@@ -15,10 +15,25 @@ startButton.addEventListener("click", function(){
     timeLeft.textContent = timeAllowed;
 
     // Start the timer.
-    startTimer();
+    // startTimer();
 
-    // Display random word.
+    //Gets the day name randomly.
+    var dayName = daysNames[Math.floor(Math.random() * daysNames.length)];
+    // displayMessage(dayName);
+
+    var blankDayName = getBlankDayName(dayName);
+    // displayMessage(blankDayName);
 });
+
+function getBlankDayName(dayName){
+
+    
+    
+
+
+
+    return dayName;
+}
 
 //Starts the timer function.
 function startTimer(){
@@ -26,6 +41,8 @@ function startTimer(){
     
     var timeInterval = setInterval(function () {
         time--;
+
+        //Sets the new time value.
         timeLeft.textContent = time;
 
         //Stops the timer and displays message that game is over.
