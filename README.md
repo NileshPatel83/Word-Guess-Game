@@ -13,7 +13,7 @@ The game works as follows:
 - "Reset Score" button resets the wins and losses to 0.
 
 ## Deployment
-The webpage is deployed to GitHub pages. Use below link to visit the webpage: https://nileshpatel83.github.io/word-guess-game/
+The webpage is deployed to GitHub pages. Use below link to visit the webpage: https://nileshpatel83.github.io/Word-Guess-Game/
 
 ## Screenshot
 ![Word Guess Game Webpage](./assets/images/word-guess-game.png)
